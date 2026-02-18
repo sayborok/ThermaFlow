@@ -1,0 +1,14 @@
+{
+    "name": "sayborok/thermaflow",
+    "description": "Resource-aware queue management for NativePHP (Mobile)",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ThermaFlow\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.2"
+    }
+}

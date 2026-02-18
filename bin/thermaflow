@@ -1,0 +1,24 @@
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use ThermaFlow\Worker;
+use ThermaFlow\Drivers\SQLiteDriver;
+use ThermaFlow\Support\SystemMonitor;
+
+$options = getopt("q:", ["queue:"]);
+$queueName = $options['q'] ?? ($options['queue'] ?? 'default');
+
+$dbPath = getcwd() . '/storage/queue.sqlite';
+if (!file_exists(dirname($dbPath))) {
+    mkdir(dirname($dbPath), 0755, true);
+}
+
+$driver = new SQLiteDriver($dbPath);
+$monitor = new SystemMonitor();
+$worker = new Worker($driver, $monitor);
+
+echo "ThermaFlow Worker started for queue: {$queueName}\n";
+echo "Monitoring Thermal & Battery resources...\n";
+
+$worker->run($queueName);

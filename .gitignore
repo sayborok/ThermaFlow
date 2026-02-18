@@ -1,0 +1,7 @@
+/vendor/
+/storage/*.sqlite
+/tests/test_queue.sqlite
+.env
+.idea/
+.vscode/
+*.log
